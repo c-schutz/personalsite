@@ -1,0 +1,5 @@
+body{
+    /* needed so that the nav bar can reach edges */
+    margin-left: 2;
+    margin-right: 2;
+}
