@@ -1,23 +1,47 @@
 import './NavStyles.css';
+import { useState, useEffect, useRef, useContext } from 'react';
+import { Context } from './App'; // Import the context
 
 function NavBar() {
+    const [isHidden, setIsHidden] = useState(false);
+    const lastScrollY = useRef(0); //initially sets last scroll to 0
+
+    const handleScroll = () => {//runs on each scroll
+        const currentScrollY = window.scrollY; //set current scroll
+        console.log(window.scrollY);
+
+        if (currentScrollY > lastScrollY.current || window.scrollY < 150) {//check scroll direction, if near top of page add scrollbar back
+            setIsHidden(true);
+        } else {
+            setIsHidden(false);
+        }
+
+        lastScrollY.current = currentScrollY <= 0 ? 0 : currentScrollY; //set the last scroll to the current scroll unless the current scroll is negative
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        //cleanup on unmount
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);//run once
 
     return (
         <>
-            <nav class='navigation'>
-                <a class='navlinks' href="#">About</a>
-                <a class='navlinks' href="#">Projects</a>
-                <a class='navlinks' href="#">Contact</a>
+            <nav className={`navigation ${isHidden ? 'intoScreen' : 'outScreen'}`}>
+                <a className='navlinks' href="#">About</a>
+                <a className='navlinks' href="#">Projects</a>
+                <a className='navlinks' href="#">Contact</a>
             </nav>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet facilisis fringilla, libero nulla interdum nulla, eu interdum metus nisi in justo. Fusce cursus nulla vel velit vestibulum, ut blandit libero aliquet. Cras faucibus ipsum ut tincidunt dictum. Suspendisse potenti.</p>
-            <p>Quisque at dictum velit. Donec nec mauris vitae libero pretium tristique. Vivamus ac velit nec elit interdum fermentum. Sed scelerisque convallis urna, eget molestie justo convallis sit amet. Nulla facilisi. Integer vel metus vitae felis posuere dictum ut in ligula. Aenean tincidunt sapien nec neque scelerisque, non vehicula lacus suscipit.</p>
-            <p>Nam sit amet ultricies erat. Pellentesque vestibulum, quam vitae euismod sagittis, sapien libero viverra lectus, in tristique nisi urna id enim. Mauris rutrum, mauris vel congue malesuada, nulla ipsum eleifend sapien, in suscipit lacus magna id purus. Integer ut varius dolor. Suspendisse consectetur semper risus a tempor.</p>
-            <p>Fusce in velit sapien. Nullam auctor risus id elit eleifend, id sollicitudin eros bibendum. Ut eleifend porttitor felis, sed tristique augue sodales a. Vivamus euismod, velit at dignissim faucibus, justo lorem cursus lectus, id pharetra nunc purus et odio. Nullam vehicula magna et venenatis rutrum.</p>
-            <p>Etiam luctus leo at viverra porttitor. Integer rhoncus condimentum nisl, ut molestie nulla pharetra ut. Praesent aliquet risus ut enim ultricies, sit amet varius lectus laoreet. Proin bibendum molestie eros, ac iaculis metus vehicula in. Vivamus ultricies quam id risus fermentum laoreet.</p>
-            <p>Curabitur id arcu non nunc feugiat auctor at eget sapien. Donec non sollicitudin urna. Aliquam at sollicitudin tortor. Mauris congue neque vitae purus vehicula, id volutpat lectus porttitor. Cras eget orci a quam scelerisque interdum sed vel sem. Pellentesque id justo ligula. Duis tincidunt tortor ut nulla tristique congue. Nulla sed pharetra justo.</p>
-            <p>Proin tincidunt posuere libero, et scelerisque nunc. Vivamus nec velit eros. Mauris faucibus nulla at justo dictum fringilla. Donec varius efficitur nisl, id aliquam lorem pellentesque quis. Nulla consequat ultricies nisi sit amet sagittis. Donec nec quam nisi. Proin at ligula metus. Suspendisse potenti.</p>
+            <p>Nam sit amet ultricies erat. Pellentesque vestibulum, quam vitae euismod sagittis, sapien libero viverra lectus, in tristique nisi urna id enim...</p>
+            <p>Fusce in velit sapien. Nullam auctor risus id elit eleifend...</p>
+            <p>Etiam luctus leo at viverra porttitor...</p>
+            <p>Curabitur id arcu non nunc feugiat auctor at eget sapien...</p>
+            <p>Proin tincidunt posuere libero, et scelerisque nunc...</p>
         </>
-    )
+    );
 }
 
-export default NavBar
+export default NavBar;

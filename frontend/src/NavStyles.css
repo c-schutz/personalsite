@@ -1,3 +1,23 @@
+@keyframes intoScreen {
+    from {
+        transform: translateY(-150%); /* Start off-screen */
+        opacity: 30%;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 100%;
+    }
+}
+
+@keyframes outScreen {
+    from{
+        transform: translateY(0px);
+    }
+    to{
+        transform: translateY(-150%);
+    }
+}
+
 .navigation{
     /* Orientation */
     display: flex;
@@ -5,11 +25,21 @@
     justify-content: space-between;
     width: 100%;
     margin: 0;
+    position: sticky;
+    top: 0px;
 
     /* Coloring/styling */
-    background-color: rgb(224, 208, 208);
+    background-color: #D9DFC6;
     border-radius: 10px;
 
+}
+
+.navigation.intoScreen{
+    animation: intoScreen 1s forwards;
+}
+
+.navigation.outScreen{
+    animation: outScreen 1s forwards;
 }
 
 .navigation .navlinks{

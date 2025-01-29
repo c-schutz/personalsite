@@ -2,4 +2,5 @@ body{
     /* needed so that the nav bar can reach edges */
     margin-left: 2;
     margin-right: 2;
-}
+    background: linear-gradient(70deg, #9adfff 0% , #7db5f5 100%);
+}  
