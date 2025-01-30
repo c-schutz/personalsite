@@ -1,0 +1,38 @@
+@keyframes textFadeIn {
+    from{
+        opacity: 0%;
+        visibility: hidden;
+    }
+    to{
+        visibility: visible;
+        opacity: 100%;
+    } 
+}
+@keyframes textFadeOut {
+    from{
+        visibility: visible;
+        opacity: 100%;
+    }
+    to{
+        opacity: 0%;
+        visibility: hidden;
+    } 
+}
+
+p.intro {
+    position: absolute; 
+
+    /*Positions the top-left corner*/
+    top: 100%;
+    left: 50%;
+
+    /*Move the element back by 50% its own width and height*/
+    transform: translate(-50%, -50%);
+    font-size: 4vw;
+    text-align: center;
+    visibility: visible;
+}
+
+p.size{
+    margin-top: 10000px;
+}
