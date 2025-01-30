@@ -8,7 +8,6 @@ function NavBar() {
 
     const handleScroll = () => {//runs on each scroll
         const currentScrollY = window.scrollY; //set current scroll
-        console.log(window.scrollY);
 
         if (currentScrollY > lastScrollY.current || window.scrollY < 150) {//check scroll direction, if near top of page add scrollbar back
             setIsHidden(true);
