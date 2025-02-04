@@ -3,7 +3,7 @@ import './typestyles.css'
 import { useRef, useEffect, useState } from "react";
 
 function Types() {
-    const introRef = useRef(null);
+    const introRefs = useRef([]);
 
     const [scrollPosition, setScrollPosition] = useState(0); //scroll position will equate to viewport height
 
@@ -21,31 +21,35 @@ function Types() {
         setScrollPosition(position);
     };
     useEffect(() => {
-        if (introRef.current) {
-            const hrect = introRef.current.getBoundingClientRect();//y value is top of bounding box
-            introRef.current.style.color = "black";
-            //console.log(hrect.y); the higher up the element is on the screen the closer this value is to 0, it goes negative once off the top of the screen
-            const hFromTop = (hrect.bottom - hrect.top) / 2 + hrect.top;
-            const viewH = window.innerHeight;
-            const appearanceRange = viewH/2.5;//change this for how much of the viewport you want the trigger to occur under
-            const aRangeBottom = scrollPosition + appearanceRange;
-            const aRangeTop = scrollPosition - appearanceRange;
-            console.log("top: " + aRangeTop);
-            console.log("bottom: " + aRangeBottom);
-            console.log("hTop: " + hFromTop);
-            if (hFromTop <= aRangeBottom && hFromTop >= aRangeTop) {
-                //add fadeIn
-                introRef.current.style.animation = "textFadeIn .5s forwards";
-            } else {
-                //addFadeOut
-                introRef.current.style.animation = "textFadeOut .5s forwards";
-            }
-        }
+        introRefs.current.forEach((ref) =>{
+            if (ref) {
+                let hrect = ref.getBoundingClientRect();//y value is top of bounding box
+                ref.style.color = "black";
+                //console.log(hrect.y); the higher up the element is on the screen the closer this value is to 0, it goes negative once off the top of the screen
+                let elPosition = ((Math.abs(hrect.bottom) - Math.abs(hrect.top))/2) + hrect.top + scrollPosition; //position in the document
+                let viewH = window.innerHeight;
+                let appearanceRange = viewH/4;//change this for how much of the viewport you want the trigger to occur under
+                let bottom = scrollPosition + viewH/2 + appearanceRange;
+                let top = scrollPosition + viewH/2 - appearanceRange;
+                let isInMiddle = false;
+                elPosition <= bottom && elPosition >= top ? isInMiddle = true : isInMiddle = false;
+
+                if (isInMiddle) {
+                    //add fadeIn
+                    ref.style.animation = "textFadeIn .3s forwards";
+                } else {
+                    //addFadeOut
+                    ref.style.animation = "textFadeOut .3s forwards";
+                }
+
+        }})
     }, [scrollPosition]);
 
     return (
         <>
-            <p ref={introRef} className="intro">Hello, this is my website!</p>
+            <p ref={(el) => introRefs.current[0] = el} className="intro">Hello, this is my website!</p>
+            <p ref={(el) => introRefs.current[1] = el} className="subtext"> Test
+            </p>
             <p className='size'>Bottom</p>
         </>
     );

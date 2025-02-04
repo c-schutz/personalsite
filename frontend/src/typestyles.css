@@ -33,6 +33,21 @@ p.intro {
     visibility: visible;
 }
 
+p.subtext{
+    position: absolute; 
+
+    /*Positions the top-left corner*/
+    top: 100%;
+    left: 50%;
+    margin-top: 1000px;
+
+    /*Move the element back by 50% its own width and height*/
+    transform: translate(-50%, -50%);
+    font-size: 4vw;
+    text-align: center;
+    visibility: visible;
+}
+
 p.size{
     margin-top: 10000px;
 }
