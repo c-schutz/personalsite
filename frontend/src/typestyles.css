@@ -20,25 +20,46 @@
 }
 
 div.standard{
-    background-clip: padding-box;
-    background-color: rgb(136, 179, 217);
     border-radius: 5vh;
     text-align: center;
     font-weight: 500;
     font-family: 'Times New Roman', Times, serif;
     margin-top: 25vh;
     color: rgb(41, 41, 41);
-    padding: 1vh;
     font-size: 5vh;
 }
-div.standard.sp{
-    padding: 1vh;
+p.sp{
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(99, 154, 237);
+    background-clip: padding-box;
+    width: 90%;
+    padding: 10px;
+    border-radius: 15px;
 }
 p.signature{
-    color: gray;
-    text-align: right;
-    margin-right: 5vh;
-    font-size: 3vh;
+    z-index: 9;
+    position:absolute;
+    top: 56%;
+    left: 86.88%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(99, 154, 237);
+    color: black;
+    text-align: center;
+    font-size: 4vh;
+    visibility: visible;
+    background-clip: padding-box;
+    border-radius: 5vh;
+    padding: 18px;
+    padding-top: 80px;
+    padding-left: 60px;
+    width: max-content;
+    outline-style: dashed;
+    outline-width: 2vh;
+    outline-color: black;
 }
 
 /* creates better fitting background using width and padding
