@@ -29,7 +29,7 @@ function Types() {
                 let elPosition = ((Math.abs(hrect.bottom) - Math.abs(hrect.top))/2) + hrect.top + scrollPosition; //position in the document
                 let viewH = window.innerHeight;
                 let appearanceRange = viewH/4;//change this for how much of the viewport you want the trigger to occur under
-                let bottom = scrollPosition + viewH/2 + appearanceRange;
+                let bottom = scrollPosition + viewH/2 + appearanceRange; // gets center of screen + appearance range
                 let top = scrollPosition + viewH/2 - appearanceRange;
                 let isInMiddle = false;
                 elPosition <= bottom && elPosition >= top ? isInMiddle = true : isInMiddle = false;
@@ -41,12 +41,24 @@ function Types() {
                     //addFadeOut
                     ref.style.animation = "textFadeOut .3s forwards";
                 }
-
         }})
     }, [scrollPosition]);
 
     return (
-        <>
+        <>  
+            <div className="standard">
+            <p className="sp">This is my portfolio/personal website scroll down for more information about me and what
+                i'm working on! 
+            </p>
+            <p className="signature">
+                -Caleb Schutz
+            </p>
+            </div>
+            
+            {/* <p className="test">
+                test border
+            </p> */}
+
             <p ref={(el) => introRefs.current[0] = el} className="intro">Hello, this is my website!</p>
             <p ref={(el) => introRefs.current[1] = el} className="subtext"> Test
             </p>

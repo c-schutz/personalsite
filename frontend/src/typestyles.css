@@ -19,6 +19,41 @@
     } 
 }
 
+div.standard{
+    background-clip: padding-box;
+    background-color: rgb(136, 179, 217);
+    border-radius: 5vh;
+    text-align: center;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 25vh;
+    color: rgb(41, 41, 41);
+    padding: 1vh;
+    font-size: 5vh;
+}
+div.standard.sp{
+    padding: 1vh;
+}
+p.signature{
+    color: gray;
+    text-align: right;
+    margin-right: 5vh;
+    font-size: 3vh;
+}
+
+/* creates better fitting background using width and padding
+p.test{
+    visibility: visible;
+    margin-top: 10px;
+    background-clip: padding-box;
+    background-color: rgb(136, 179, 217);
+    border-radius: 5vh;
+    color: black;
+    padding: 5px;
+    width: max-content;
+}
+    */
+
 p.intro {
     position: absolute; 
 
