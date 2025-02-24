@@ -1,5 +1,7 @@
 import './NavStyles.css';
 import { useState, useEffect, useRef, useContext } from 'react';
+import About from '../about/about';
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
     const [isHidden, setIsHidden] = useState(true);
@@ -29,9 +31,9 @@ function NavBar() {
     return (
         <>
             <nav className={`navigation ${isHidden ? 'intoScreen' : 'outScreen'}`}>
-                <a className='navlinks' href="#">About</a>
-                <a className='navlinks' href="#">Projects</a>
-                <a className='navlinks' href="#">Contact</a>
+                <NavLink className='navlinks' to="/about">About</NavLink>
+                <NavLink className='navlinks' to="/projects">Projects</NavLink>
+                <NavLink className='navlinks' to="/contact">Contact</NavLink>
             </nav>
         </>
     );
